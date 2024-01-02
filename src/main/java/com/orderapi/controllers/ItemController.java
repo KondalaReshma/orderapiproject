@@ -1,5 +1,4 @@
 package com.orderapi.controllers;
-
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -20,19 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.orderapi.entities.Item;
 import com.orderapi.service.ItemService;
 
-
     @RestController
 	@RequestMapping("/items")
 	public class ItemController {
     	
     	@Autowired
-	    private ItemService itemService;
-    	
-    	
+	    private ItemService itemService;	    
 
-	    
-
-	    @GetMapping("/GetItems")
+	    @GetMapping("/")
 	    public ResponseEntity<List<Item>> getAllItems() {
 	        List<Item> items = itemService.getAllItems();
 	        return new ResponseEntity<>(items, HttpStatus.OK);
@@ -48,7 +42,7 @@ import com.orderapi.service.ItemService;
 	        }
 	    }
 
-	    @PostMapping("/CreateItem")
+	    @PostMapping("/")
 	    public ResponseEntity<Item> createItem(@RequestBody Item item) {
 	        Item newItem = itemService.createItem(item);
 	        return new ResponseEntity<>(newItem, HttpStatus.CREATED);
@@ -65,7 +59,7 @@ import com.orderapi.service.ItemService;
 	        }
 	    }
 
-	    @PostMapping("/sell/{id}")
+	    @PostMapping("/sell-item/{id}")
 	    public ResponseEntity<String> sellItem(@PathVariable Long itemId,@RequestParam int quantity){
 	    	 try {
 	             itemService.sellItem(itemId,quantity);

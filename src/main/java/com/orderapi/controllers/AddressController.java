@@ -22,7 +22,7 @@ public class AddressController {
 	
 	
 
-	@PostMapping("/addAddress/{userId}")
+	@PostMapping("/{userId}")
 	public ResponseEntity<Address> addAddress(@RequestBody Address address, @PathVariable Long userId) {
 
 		Address newaddress = addressService.addAddress(address, userId);

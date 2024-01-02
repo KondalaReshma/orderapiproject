@@ -18,8 +18,6 @@ public class UserService {
 	private UserRepository userRepository;
 	
 
-	@Autowired 
-	private EmailService emailService;
 	
 
 	public List<User> getAllUsers() {
@@ -31,7 +29,7 @@ public class UserService {
 	}
 
 	public User createUser(User user) {
-		 emailService.sendSimpleMail(user.getEmail());
+		
 		return userRepository.save(user);
 
 	}

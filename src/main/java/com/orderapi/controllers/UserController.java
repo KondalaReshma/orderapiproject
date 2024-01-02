@@ -33,14 +33,7 @@ public class UserController {
 	@Autowired 
 	private EmailService emailService;
 	
-	
-	
-	@GetMapping("/welcome")
-	public String welcome() {
-		return "welcome to orderapi";
-	}
-	
-	@GetMapping("/GetUsers")
+	@GetMapping("/")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
@@ -56,7 +49,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/CreateUser")
+    @PostMapping("/")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         User newuser = userService.createUser(user);
         emailService.sendSimpleMail(user.getEmail());
@@ -68,7 +61,7 @@ public class UserController {
  
     
     
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteItem(@PathVariable Long userId) {
         userService.deleteItem(userId);
         

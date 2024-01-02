@@ -27,7 +27,7 @@ public class OrderController {
 	private EmailService emailService;
 		
 	
-	@PostMapping("/createorder")
+	@PostMapping("/")
     public ResponseEntity<Order> createOrder(@RequestBody Order order,@RequestParam Long userId,@RequestParam Long itemId,@RequestParam Long addressId,@RequestParam OrderStatus orderstatus,@RequestParam PaymentMethod paymentmethod) {
         
 		Order newOrder = orderService.createOrder(order,userId,itemId,addressId,orderstatus,paymentmethod);
@@ -41,7 +41,7 @@ public class OrderController {
     }
 	
 	
-	@GetMapping("/trackstatus/{orderId}")	
+	@GetMapping("/track-status/{orderId}")	
 	public OrderStatus getOrderStatus(@PathVariable Long orderId) {
 		
 		OrderStatus order = orderService.getOrderStatus(orderId);	
@@ -65,12 +65,12 @@ public class OrderController {
 		 
 	}
 	
-	@GetMapping("/getDeliveredOrders")
+	@GetMapping("/delivered-orders")
 	public List<Order> getDeliveredOrders(){
 		return orderService.getDeliveredOrders();
 	}
 	
-	@GetMapping("/get-orders/{username}")
+	@GetMapping("/{username}")
 	public List<Order> getOrdersByUserName(@PathVariable String username){
 		
 		return  orderService.getUserOrders(username);

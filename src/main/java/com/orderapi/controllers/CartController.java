@@ -36,7 +36,7 @@ public class CartController {
 	private CartRepository cartRepository;
 	
 	
-	@PostMapping("/createcart/{userId}")
+	@PostMapping("/{userId}")
     public ResponseEntity<Cart> createCart(@RequestBody Cart cart,@PathVariable Long userId) {
 		
         Cart newCart = cartService.createCart(cart,userId);
@@ -49,7 +49,7 @@ public class CartController {
         return ResponseEntity.ok("Record deleted successfully");
     }
 	
-	@PutMapping("/updateCart/{cartId}")
+	@PutMapping("/{cartId}")
     public ResponseEntity<Cart> updateCart( @RequestBody Cart cart,@PathVariable Long cartId,@RequestParam Long itemId,@RequestParam double totalPrice) {
         Cart updatedCart = cartService.updateCart( cart,cartId,itemId,totalPrice);
         if (updatedCart!= null) {
@@ -61,7 +61,7 @@ public class CartController {
 	
 	
 	
-	 @PostMapping("/additem/{itemId}")
+	 @PostMapping("/{itemId}")
 	    public ResponseEntity<Cart> addItemToCart(@RequestParam Long cartId,@PathVariable Long itemId,@RequestParam int quantity) {
 	        cartService.addItemToCart(cartId, itemId,quantity);
 	        Cart cart = cartRepository.findById(cartId).get();
@@ -69,7 +69,7 @@ public class CartController {
 	    }
 	 
 	
-	 @DeleteMapping("/removeitem/{itemId}")
+	 @DeleteMapping("/{itemId}")
 	    public ResponseEntity<String> removeCartItem(@RequestParam Long cartId,@PathVariable Long itemId) {
 	        cartService.removeItemFromCart(cartId,itemId);
 	        return ResponseEntity.ok("Item removed successfully");

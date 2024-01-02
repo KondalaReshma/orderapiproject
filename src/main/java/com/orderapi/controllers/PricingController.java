@@ -21,12 +21,7 @@ public class PricingController {
 	@Autowired
 	private PricingService pricingService;
 
-	@GetMapping("/welcome")
-	public String pricing() {
-		return "welcome to pricing";
-	}
-
-	@PostMapping("/addDiscount/{pricingId}")
+	@PostMapping("/add-discount/{pricingId}")
 	public ResponseEntity<Pricing> addDiscount(@PathVariable Long pricingId, @RequestParam double discount) {
 		Pricing updatedPricing = pricingService.addDiscount(pricingId, discount);
 		if (updatedPricing != null) {
@@ -36,7 +31,7 @@ public class PricingController {
 		}
 	}
 
-	@DeleteMapping("/removeDiscount/{pricingId}")
+	@DeleteMapping("/remove-discount/{pricingId}")
 	public ResponseEntity<Pricing> removeDiscount(@PathVariable Long pricingId) {
 		Pricing updatedPricing = pricingService.removeDiscount(pricingId);
 		if (updatedPricing != null) {
@@ -46,7 +41,7 @@ public class PricingController {
 		}
 	}
 
-	@PostMapping("{pricingId}/addSpecialOffer")
+	@PostMapping("/add-specialoffer/{pricingId}")
 	public ResponseEntity<Pricing> addSpecialOffer(@PathVariable Long pricingId, @RequestParam String specialOffer) {
 		Pricing updatedPricing = pricingService.addSpecialOffer(pricingId, specialOffer);
 		if (updatedPricing != null) {
@@ -56,7 +51,7 @@ public class PricingController {
 		}
 	}
 
-	@DeleteMapping("/{pricingId}/removeSpecialOffer")
+	@DeleteMapping("/remove-specialoffer/{pricingId}")
 	public ResponseEntity<Pricing> removeSpecialOffer(@PathVariable Long pricingId) {
 		Pricing updatedPricing = pricingService.removeSpecialOffer(pricingId);
 		if (updatedPricing != null) {
